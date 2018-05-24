@@ -1,2 +1,1 @@
-# BurstTracker
-## LTE Bottleneck Detector
+# BurstTracker: LTE Bottleneck Detector
