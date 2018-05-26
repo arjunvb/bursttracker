@@ -74,7 +74,6 @@ class BurstTracker():
       return sum(self.burst_volume[:-1])/(self.tdelta) * 8e3 # bps
     else:
       return 0
-    #return sum(self.burst_volume)/(tdelta) * 8e-3 # Mbps
 
   def add_volume(self, vol):
     self.burst_volume.append(vol)
@@ -135,7 +134,7 @@ def main():
     
           ### burst IN/OUT logic ###
           if bt.in_burst and plog_prev.nRBs < NUM_PRBS_END and tdelta > 1: 
-            # END burst if: (1) prev TTI is half-full, (2) next TTI is empty
+            # END burst if: (1) prev TTI satisfies end threshold, (2) next TTI is empty
             bthp = bt.end_burst(plog_prev.fsf)
             burst_hist.append(bthp)
             dur_hist.append(bt.tdelta)
@@ -143,7 +142,7 @@ def main():
             print "%0.3f BURST from (%d, %d) with throughput %0.3f Mbps (avg %0.3f)" % (plog_prev.time, bt.start_fsf, bt.end_fsf, bthp/1e6, bsegg/1e6)
             bt.clear_burst()
           if not bt.in_burst and plog_curr.nRBs > NUM_PRBS_START 
-            # BEGIN burst if: full TTI
+            # BEGIN burst if: TTI satisfies start threshold
             bt.begin_burst(plog_curr.fsf)
           if bt.in_burst:
             # account for volume from every TTI during burst
