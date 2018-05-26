@@ -111,14 +111,10 @@ def main():
   burst_hist = collections.deque(maxlen=5)
   dur_hist = collections.deque(maxlen=5)
 
-  # create + open log output file
-  f = open(os.environ['LTEMEAS_ROOT'] + '/code/videoplayer/bsegg.csv', 'w')
- 
   # Setup HTTP server
   httpd = setup_http_server()
 
   print "Starting BurstTracker..."
-  f.write("time, start_fsf, end_fsf, bsegg\n")
  
   while True:
     ready = select([sys.stdin, httpd], [], [], 0.1)[0]
@@ -145,8 +141,6 @@ def main():
             dur_hist.append(bt.tdelta)
             bsegg = sum([dur_hist[i] * burst_hist[i] for i in range(len(burst_hist))]) / sum(dur_hist)
             print "%0.3f BURST from (%d, %d) with throughput %0.3f Mbps (avg %0.3f)" % (plog_prev.time, bt.start_fsf, bt.end_fsf, bthp/1e6, bsegg/1e6)
-            f.write("%0.3f, %d, %d, %0.3f\n" % (plog_prev.time, bt.start_fsf, bt.end_fsf, bthp))
-            #f.flush()
             bt.clear_burst()
           if not bt.in_burst and plog_curr.nRBs > NUM_PRBS_START 
             # BEGIN burst if: full TTI
