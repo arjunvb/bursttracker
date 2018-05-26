@@ -15,9 +15,11 @@ BurstTracker can be run offline. Run the following scripts to get metrics from B
 $ bash qxdm_raw_to_qxdm_master.sh <path to top-level directory containing QXDM logs>
 $ bash qxdm_raw_to_qxdm_master.sh /data/qxdm_test/
 ```
-Here, the folder `qxdm\_test` the raw `.txt` QXDM files. This script generates MAST.TTIS files, which
-can be found in the folder `qxdm\_test/qxdm/master`.
+Here, the folder `qxdm_test` the raw `.txt` QXDM files. 
+This script generates a series of `.csv` files, aggregating statistics over: TTIs, bursts, and
+the entire application transfer.
 
 Note: this version of BurstTracker includes instrumentation collect many other radio-layer metrics
-that are also exposed by QXDM. The relevant metrics computed by BurstTracker include: `THP_TIME_DL` and `THP_DL`.
+that are also exposed by QXDM. The relevant metrics computed by BurstTracker can be found 
+include: `THP_TIME_DL` and `THP_DL`.
 
