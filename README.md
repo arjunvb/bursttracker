@@ -1,4 +1,4 @@
-# Detecting if LTE is the Bottleneck with BurstTracker
+# BurstTracker: Detecting if LTE is the Bottleneck
 
 BurstTracker comes in two implementations: online and offline. Please see see the READMEs linked below
 for more information:
