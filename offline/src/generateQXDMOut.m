@@ -99,13 +99,13 @@ global loop_time
 if force_parse
     % parse + import PDSCH log
     display('parsing + importing PDSCH log');
-    cmd = ['python ../python/parsePDSCHlog.py ' qxdmfile];
+    cmd = ['python parsePDSCHlog.py ' qxdmfile];
     system(cmd);
     readPDSCHcsv(qxdmfile);  %Generates a .mat file
 
     % parse + import PDCCH log
     display('parsing + importing PDCCH log');
-    cmd = ['python ../python/parsePDCCHlog.py ' qxdmfile];
+    cmd = ['python parsePDCCHlog.py ' qxdmfile];
     system(cmd);
     readPDCCHcsv(qxdmfile);  %Generates a .mat file
 
